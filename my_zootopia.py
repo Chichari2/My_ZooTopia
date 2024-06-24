@@ -1,4 +1,3 @@
-import requests
 from data_fetcher import fetch_data
 
 def main():
