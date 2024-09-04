@@ -11,12 +11,21 @@ def generate_website(animals_data, animal_name):
     # Generate HTML for the animals
     animals_info = ''
     for animal in animals_data:
+        # Extract the necessary information
+        name = animal['name']
+        diet = animal['characteristics'].get('diet', 'N/A')
+        locations = ', '.join(animal['locations'])
+        animal_type = animal['characteristics'].get('type', 'N/A')
+        skin_type = animal['characteristics'].get('skin_type', 'N/A')
+
+        # Create a formatted string with the required details
         animal_info = f"""
             <li class="cards__item">
-                <h2 class="card__title">{animal['name']}</h2>
-                <p class="card__text">Taxonomy: {animal['taxonomy']}</p>
-                <p class="card__text">Locations: {animal['locations']}</p>
-                <p class="card__text">Characteristics: {animal['characteristics']}</p>
+                <h2 class="card__title">{name}</h2>
+                <p class="card__text"><strong>Diet</strong>: {diet}</p>
+                <p class="card__text"><strong>Location</strong>: {locations}</p>
+                <p class="card__text"><strong>Type</strong>: {animal_type}</p>
+                <p class="card__text"><strong>Skin Type</strong>: {skin_type}</p>
             </li>
             """
         animals_info += animal_info
@@ -45,7 +54,7 @@ def main():
         with open('animals.html', 'w') as file:
             file.write(html_content)
 
-        print(f"<h2>The animal {animal_name} doesn't exist.</h2>")
+        print(f"The animal {animal_name} doesn't exist.")
 
 if __name__ == "__main__":
     main()
